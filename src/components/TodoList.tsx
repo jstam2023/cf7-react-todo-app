@@ -1,20 +1,7 @@
-import React from "react";
+// import React from "react";
 import {Trash2} from "lucide-react";
+import type {TodoListProps} from "../types.ts";
 
-type Todo = {
-    id: number;
-    text: string;
-}
-
-//
-// type Action =
-//     | {type: "ADD"; payload: string}
-//     | {type: "DELETE"; payload: number}
-
-type TodoListProps = {
-    todos: Todo[];
-    dispatch: React.Dispatch<{type: "DELETE"; payload: number}>;
-}
 
 const TodoList = ({todos, dispatch}: TodoListProps) => {
 
