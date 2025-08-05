@@ -6,17 +6,32 @@ import type { TodoProps, Action } from "../types.ts";
 
 const todoReducer = (state: TodoProps[], action: Action): TodoProps[] => {
     switch (action.type) {
+        // case "ADD":{
+        //     const newTodo: TodoProps = {
+        //         id: Date.now(),
+        //         text: action.payload,
+        //         };
+        //         return [...state, newTodo];
+        // }
         case "ADD":
-            { const newTodo: TodoProps = {
-                id: Date.now(),
-                text: action.payload,
-                };
-                return [...state, newTodo];
-            }
+            return [
+                ...state,
+                {
+                    id: Date.now(),
+                    text: action.payload,
+                }
+            ]
         case "DELETE":
-                return state.filter(todo => todo.id !== action.payload);
-                default:
-                    return state;
+            return state.filter(todo => todo.id !== action.payload);
+        case "EDIT":
+            return state.map( todo =>
+                todo.id === action.payload.id
+                ? {...todo, text:action.payload.newText}
+                    : todo
+            )
+
+        default:
+            return state;
 
     }
 }
